@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+
+  database:
+    image: mysql
+    volumes:
+      - ./db:/var/lib/mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: "adb"
+      MYSQL_USER: "usrna"
+      MYSQL_PASSWORD: "password"
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
