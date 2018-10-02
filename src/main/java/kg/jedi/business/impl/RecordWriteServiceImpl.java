@@ -39,11 +39,19 @@ public class RecordWriteServiceImpl implements RecordWriteService {
         } else {
             memBuffer.addRecord(record);
         }
+
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private Connection connectDB() {
-        try (Connection connection = DB.getConnection()){
-            return connection;
+        try {
+            return DB.getConnection();
         } catch (SQLException e) {
             System.out.println("Could not connect to DB");
             ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
@@ -76,6 +84,14 @@ public class RecordWriteServiceImpl implements RecordWriteService {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+            }
+
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
