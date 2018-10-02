@@ -27,7 +27,7 @@ public class RecordReadServiceImpl implements RecordReadService {
 
                 while (resultSet.next()) {
 
-                    Date aTimestamp = resultSet.getDate("a_timestamp");
+                    Timestamp aTimestamp = resultSet.getTimestamp("a_timestamp");
                     result.add(new Record(aTimestamp));
                 }
             }
