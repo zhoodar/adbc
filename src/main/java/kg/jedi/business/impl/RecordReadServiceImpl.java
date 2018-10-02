@@ -16,8 +16,7 @@ public class RecordReadServiceImpl implements RecordReadService {
 
         Collection<Record> result = new ArrayList<>();
 
-        try {
-            Connection connection = DB.getConnection();
+        try (Connection connection = DB.getConnection()) {
 
             if (null != connection) {
 

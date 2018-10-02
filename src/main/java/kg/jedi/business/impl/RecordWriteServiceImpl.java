@@ -42,8 +42,8 @@ public class RecordWriteServiceImpl implements RecordWriteService {
     }
 
     private Connection connectDB() {
-        try {
-            return DB.getConnection();
+        try (Connection connection = DB.getConnection()){
+            return connection;
         } catch (SQLException e) {
             System.out.println("Could not connect to DB");
             ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
