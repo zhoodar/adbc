@@ -55,7 +55,7 @@ public class RecordWriteServiceImpl implements RecordWriteService {
         } catch (SQLException e) {
             System.out.println("Could not connect to DB");
             ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-            service.schedule(new DbConnectorTask(), 2, TimeUnit.SECONDS);
+            service.schedule(new DbConnectorTask(), 5, TimeUnit.SECONDS);
             service.shutdown();
         } catch (ClassNotFoundException e) {
             System.out.println("Did not find the driver class");
@@ -64,8 +64,6 @@ public class RecordWriteServiceImpl implements RecordWriteService {
     }
 
     class DbConnectorTask implements Runnable {
-        DbConnectorTask() {
-        }
 
         @Override
         public void run() {
